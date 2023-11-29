@@ -32,7 +32,7 @@ const Card = () =>{
       setCardFront(dataSource[whichCardAmIOnIdk].word);
     }
     setIsDef(true);
-    console.log("prev " + whichCardAmIOnIdk);
+    console.log("prev " +whichCardAmIOnIdk);
   }
 
   function nextCard() {
@@ -66,7 +66,7 @@ const Card = () =>{
       <TouchableOpacity onPress={()=>flipCard()}>
         <View style = {styles.box}>
           <Text style = {{color: "#FFF" ,textAlign: 'center', fontFamily: 'Gill Sans', top: 100, fontSize: 14, fontWeight: 'bold'}}>
-            wha
+            {cardFront} 
           </Text>
         </View>
       </TouchableOpacity> 

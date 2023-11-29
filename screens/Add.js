@@ -14,7 +14,7 @@ function Add({ navigation }) {
                     style = {styles.head_logo}></Image>
             
             <View style = {styles.box}>
-                
+                <KeyboardAvoidingView enabled = {true} keyboardVerticalOffset={10}>
                 <TextInput multiline= {true} style = {styles.term}
                             placeholder='Enter Term'
                             onChangeText={(newText)=>{
@@ -24,7 +24,7 @@ function Add({ navigation }) {
                             placeholder='Enter Definition'
                             onChangeText={(newText)=>{
                             setDefinition(newText);}}/>
-               
+               </KeyboardAvoidingView>
 
                 <TouchableOpacity onPress ={()=>navigation.navigate("Creates", { key: '002',word: word, definition: definition})}>
                     <View style = {styles.createB}>
