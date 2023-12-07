@@ -5,22 +5,22 @@ import React, {useState} from 'react';
 // import { auth } from '../firebase';
 
 
-const Home = () =>{
-    
-  const dataSource = [
-    {key: '001', firstName: 'Devin', lastName: 'Jones', description: 'tall'},
-    {key: '002', firstName: 'Dan', lastName: 'Danielson', description: 'short'},
-    {key: '003', firstName: 'Dominick', lastName: 'Dandy', description: 'preppy'},
-    {key: '004', firstName: 'Jackson', lastName: 'Jane', description: 'beautiful'},
-    {key: '005', firstName: 'James', lastName: 'Jordon', description: 'smart'},
-    {key: '006', firstName: 'Joel', lastName: 'Jefferson', description: 'patriotic'},
-    {key: '007', firstName: 'John', lastName: 'Jacob', description: 'basic'},
-    {key: '008', firstName: 'Jillian', lastName: 'Julius', description: 'athletic'},
-    {key: '009', firstName: 'Jimmy', lastName: 'johnson', description: 'outspoken'},
-    {key: '0010', firstName: 'Your', lastName: 'Mother', description: 'bubbly'},
-  ];
+function Home ({route, navigation }) {
+//   const dataSource =[]
 
-    const navigation = useNavigation();
+//   dataSource.push(route.params)
+//   console.log(dataSource)
+// //   let newArr = dataSource.map(function (item) => {
+// //     return { key: item.title, value: [item.term, item.def] };
+// // })
+//   let newarr =dataSource.map((item) =>{
+//     for(let i = 0; i < item.length; i++){
+//     return { key: item[0].title, value: [item[i].term, item[i].def] };
+//     }
+//   })
+//   console.log(newarr)
+
+  
 
     return(
         <LinearGradient style = {styles.container}
@@ -70,10 +70,10 @@ const Home = () =>{
             
 
             <View style = {{flexDirection: "column", position:'absolute', top: 390 , width:390, height: 350}}>
-                <FlatList data ={dataSource} 
+                <FlatList data ={route.params} 
                 renderItem = {({item}) => <TouchableOpacity style = {styles.sets}>
-                   <Text style = {styles.item}>{item.firstName}</Text>
-                   <Text style = {styles.item}>{item.lastName}</Text>
+                   <Text style = {styles.item}>{item.title}</Text>
+                   
                    </TouchableOpacity>
                 }
               />
