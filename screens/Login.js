@@ -19,7 +19,7 @@ const Login = () =>{
       try {
         const response = await signInWithEmailAndPassword(auth, email, password);
         console.log(response);
-        alert("IT WORKED HOLY SHIT");
+      
         navigation.navigate("Home");
       } catch (error) {
         console.log(error);
@@ -34,10 +34,10 @@ const Login = () =>{
       try {
         const response = await createUserWithEmailAndPassword(auth, email, password);
         console.log(response);
-        alert("thank you for selling your soul to firebase!");
+        alert("Thank you for joining SwiftDeck");
       } catch (error) {
         console.log(error);
-        alert("rip");
+        alert("Try Again");
       } finally {
         setLoading(false);
       }

@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { Button, TextInput, StyleSheet, Text, View, Image, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 function Add({ navigation }) {
-    const [word, setWord] = useState("");
-    const [definition, setDefinition] = useState("");
-    var count = 0;
+    
+    const[word, setWord] = useState();
+    const[definition, setDef] = useState();
+    const[name, setName] = useState();
 
+  const[listData, setListData] = useState([]);
+  
     return (
     
         <LinearGradient style = {styles.container}
@@ -14,24 +17,38 @@ function Add({ navigation }) {
                     style = {styles.head_logo}></Image>
             
             <View style = {styles.box}>
-                
+                <KeyboardAvoidingView enabled = {true} keyboardVerticalOffset={10}>
+
+                <TextInput multiline= {true} style = {styles.title}
+                            value={name}
+                            placeholder='Title of the Deck'
+                            onChangeText={(newText)=>{
+                            setName(newText);}}/>
+                             
                 <TextInput multiline= {true} style = {styles.term}
+                            value={word}
                             placeholder='Enter Term'
                             onChangeText={(newText)=>{
                             setWord(newText);}}/>
 
                 <TextInput multiline= {true} style = {styles.definition}
+                            value = {definition}
                             placeholder='Enter Definition'
                             onChangeText={(newText)=>{
-                            setDefinition(newText);}}/>
-               
+                            setDef(newText);}}/>
+               </KeyboardAvoidingView>
 
-                <TouchableOpacity onPress ={()=>navigation.navigate("Creates", { key: '002',word: word, definition: definition})}>
+                <TouchableOpacity onPress ={()=>{listData.push({title: name, term: word, def: definition});navigation.navigate("Creates", listData);}}>
                     <View style = {styles.createB}>
                         <Text style = {{color: "#FFF" ,textAlign: 'center', fontFamily: 'Gill Sans', top: 10, fontSize: 30, fontWeight: 'bold'}}>
                             Create
                         </Text>
                     </View>
+                </TouchableOpacity>
+                <TouchableOpacity onPress = {() => {navigation.navigate("Home", listData)}}>
+                  <View style = {styles.backB}>
+                    <Text style = {{color: "#FFF" ,textAlign: 'center', fontFamily: 'Gill Sans', top: 5, fontSize: 15, fontWeight: 'bold'}}>BACK</Text>
+                  </View>
                 </TouchableOpacity>
                 
             </View>
@@ -106,6 +123,26 @@ const styles = StyleSheet.create({
         
       },
 
+      title:{
+        paddingHorizontal: 10,
+        borderRadius: 10,
+        
+        // borderWidth:1,
+        width:280,
+        height:25,
+        backgroundColor: "#b8e3ff",
+        left:10,
+        top: 30,
+        color: "#FFF",
+        fontFamily: "Gill Sans",
+        fontSize: 15,
+        borderWidth:1,
+        borderColor:"white",
+        marginBottom:-25,
+        
+        
+      },
+
       term:{
         paddingHorizontal: 10,
         borderRadius: 10,
@@ -115,7 +152,7 @@ const styles = StyleSheet.create({
         height:110,
         backgroundColor: "#b8e3ff",
         left:10,
-        top: 50,
+        top: 90,
         color: "#FFF",
         fontFamily: "Gill Sans",
         fontSize: 25,
@@ -133,7 +170,7 @@ const styles = StyleSheet.create({
         height: 110,
         backgroundColor: "#b8e3ff",
         left:10,
-        top: 100,
+        top: 120,
         color: "#FFF",
         fontFamily: "Gill Sans",
         fontSize: 25,
@@ -154,6 +191,15 @@ const styles = StyleSheet.create({
         
       },
 
+      backB:{
+        borderRadius:10,
+        width:210,
+        height: 30,
+        backgroundColor: "#b8e3ff",
+        top: 300,
+        position: 'absolute',
+        left:42,
+      },
 
 });
 

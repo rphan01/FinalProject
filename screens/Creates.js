@@ -2,39 +2,34 @@ import React, { useEffect, useState } from 'react';
 import { Button, FlatList, StyleSheet, Text, View, TouchableOpacity,Image } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 
-function Creates ({ route, navigation }) {
+function Creates ({route, navigation }) {
 //   console.log(route.params);
     //dataSource contains the data we want rendered as a list
     //the dataSource should contain a unique key for each item in the array
-    const dataSource = [
-        {key: '1', word: 'benevolent', definition: 'kind, generous'},
-        // {key: '003', word: 'clout', definition: 'special advantage or power'},
-        // {key: '004', word: 'deference', definition: 'respect, regard'},
-        // {key: '005', word: 'exacerbate', definition: 'to make worse or increase the severity of'},
-        // {key: '006', word: 'flourish', definition: 'to prosper, grow'},
-        // {key: '007', word: 'geriatric', definition: 'referring to old age'},
-        // {key: '008', word: 'hostile', definition: 'harmful, dangerous'},
-        // {key: '009', word: 'infer', definition: 'to guess, conclude, derive by reasoning'},
-        // {key: '0010',word: 'lament', definition: 'to feel sorry for, to mourn'},
-        // {key: '0011',word: 'ur mother', definition: 'thy mother is courted by me'},
-    ];    
+     
+  
+   
     
-    const[listData, setListData] = useState(dataSource);
-    console.log(route.params)
-   // setListData(listData.concat(route.params));
-//    const term = route.params.word;
-//    const def = route.params.definition;
 
-//    dataSource.push({word: term, definition: def});
-    useEffect(()=>{
-      if(route.params){
-        setListData(listData.concat(route.params))
+  //   // console.log(route.params.listData)
+  //  // setListData(listData.concat(route.params));
+  //  const[listData, setListData] = useState(dataSource);
+  //  const term = route.params.term;
+  //  const def = route.params.def;
+  //  const count = route.params.count;
+  //  dataSource.push({word: term, definition: def});
+ 
+    // useEffect(()=>{
+    //   if(route.params){
+    //     setListData(listData.concat(route.params))
         
-        // setListData(listData.concat({word:route.params.word, definition: route.params.definition}));
-        console.log(listData)
-      }
-    }, [route.params]);
+    //     // setListData(listData.concat({word:route.params.word, definition: route.params.definition}));
+    //     // console.log(listData)
+    //   }
+    // }, [route.params]);
     
+    
+    // console.log(listData)
     // function please(){
     //     dataSource.push(route.params);
     //     console.log(dataSource[0]);
@@ -47,24 +42,26 @@ function Creates ({ route, navigation }) {
                     style = {styles.head_logo}></Image>
              <View style = {{flexDirection: "column", position: 'absolute', width: 390, height: 530, top: 230}}>
             <FlatList
-            data={listData}
-            extraData={listData}
+            data={route.params}
+            extraData={route.params}
             renderItem={({item}) => 
                 
                 <View style={styles.border}>
-                <Text style={styles.itemName}>{item.word}</Text>
-                <Text style={styles.itemDesc}>{item.definition}</Text>
+                <Text style={styles.itemName}>{item.term}</Text>
+                <Text style={styles.itemDesc}>{item.def}</Text>
                 </View>
             } />
             </View>
              
-             <TouchableOpacity onPress ={()=> {navigation.navigate("Add")}}>
+             <TouchableOpacity onPress ={()=> {navigation.navigate("Add");}}>
                 <View style = {styles.createB}>
                     <Text style = {{color: "#FFF" ,textAlign: 'center', fontFamily: 'Gill Sans', top: 5, fontSize: 15, fontWeight: 'bold'}}>
                         Create
                     </Text>
                 </View>
             </TouchableOpacity>
+
+            
         </LinearGradient>
        
     );
@@ -120,10 +117,9 @@ const styles = StyleSheet.create({
         backgroundColor: "#b8e3ff",
         top: 720,
         left:50,
-        
-        
-        
       },
+
+      
 });
   
 export default Creates;
