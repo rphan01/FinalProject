@@ -1,83 +1,83 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, FlatList } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from '@react-navigation/native';
 import React, {useState} from 'react';
+import SingleCard from './SingleCard';
 
+// for flatlist: create separate card.js for rendering a single card, then pass each word/def through card component
 const Card = () =>{
   const dataSource = [
-    {key: '001', word: "where i'm at", definition: 'ur moms house'},
-    {key: '002', word: 'benevolent', definition: 'kind, generous'},
-    {key: '003', word: 'clout', definition: 'special advantage or power'},
-    {key: '004', word: 'tu madre', definition: 'ur mom'},
-    {key: '005', word: 'exacerbate', definition: 'to make worse or increase the severity of'},
-    {key: '006', word: 'flourish', definition: 'to prosper, grow'},
-    {key: '007', word: 'geriatric', definition: 'referring to old age'},
-    {key: '008', word: 'hostile', definition: 'harmful, dangerous'},
-    {key: '009', word: 'infer', definition: 'to guess, conclude, derive by reasoning'},
-    {key: '0010',word: 'lament', definition: 'to feel sorry for, to mourn'},
-    {key: '0011',word: 'ur mother', definition: 'thy mother is courted by me'},
+    {key: '002', word: '0', definition: 'A'},
+    {key: '003', word: '1', definition: 'B'},
+    {key: '005', word: '2', definition: 'C'},
+    {key: '006', word: '3', definition: 'D'},
+    {key: '007', word: '4', definition: 'E'},
+    {key: '008', word: '5', definition: 'F'},
+    {key: '009', word: '6', definition: 'G'},
+    {key: '0010', word: '7', definition: 'H'},
   ]; 
 
-  var[whichCardAmIOnIdk, setWhichCardAmIOnIdk] = useState(0);
-  var[cardFront, setCardFront] = useState(dataSource[0].word);
-  var[isDef, setIsDef] = useState(true);
+  // var[index, setIndex] = useState(0);
+  // var[cardFront, setCardFront] = useState(dataSource[0].word);
+  // var[isDef, setIsDef] = useState(true);
 
-  function previousCard() {
-    if (whichCardAmIOnIdk>0){
-    setWhichCardAmIOnIdk(whichCardAmIOnIdk-1);
-    setCardFront(dataSource[whichCardAmIOnIdk].word);
-    }
-    else {
-      setWhichCardAmIOnIdk(dataSource.length-1);
-      setCardFront(dataSource[whichCardAmIOnIdk].word);
-    }
-    setIsDef(true);
-    console.log("prev " +whichCardAmIOnIdk);
-  }
+  // function previousCard() {
+  //   if (index>0) {
+  //     setIndex(index-1); 
+  //   }
+  //   else {
+  //     setIndex(dataSource.length-1);
+  //   }
+  //   setCardFront(dataSource[index].word);
+  //   setIsDef(true);
+  // }
 
-  function nextCard() {
-    if(whichCardAmIOnIdk<dataSource.length-1){
-    setWhichCardAmIOnIdk(whichCardAmIOnIdk+1);
-    setCardFront(dataSource[whichCardAmIOnIdk].word);
-    }
-    else {
-      setWhichCardAmIOnIdk(0);
-      setCardFront(dataSource[whichCardAmIOnIdk].word);
-    }
-    setIsDef(true);
-    console.log("next " +whichCardAmIOnIdk);
-  }
+  // function nextCard() {
+  //   if(index<dataSource.length-1){
+  //     setIndex(index+1);
+  //   }
+  //   else {
+  //     setIndex(0);
+  //   }
+  //   setCardFront(dataSource[index].word);
+  //   setIsDef(true);
+  //   console.log(index);
+  // }
 
-  function flipCard() {
-    if(isDef)
-      setCardFront(dataSource[whichCardAmIOnIdk].definition);
-    else
-      setCardFront(dataSource[whichCardAmIOnIdk].word);
-    setIsDef(!isDef);
-    
-
-  }
-
-  const navigation = useNavigation();
+  // function flipCard() {
+  //   if(isDef)
+  //     setCardFront(dataSource[index].definition);
+  //   else
+  //     setCardFront(dataSource[index].word);
+  //   setIsDef(!isDef);
+  //   console.log(index);
+  // }
 
   return(
     <LinearGradient style = {styles.container} colors= {["#08204f", "#92e8f1"]}>
       <Image source = {require('../assets/swiftDeck.png')} style = {styles.head_logo}></Image>
-      <TouchableOpacity onPress={()=>flipCard()}>
+      <View style = {{flexDirection: "column", position: 'absolute', width: 390, height: 530, top: 230}}>
+        <FlatList
+          data={dataSource}
+          renderItem={({item}) =>      
+            <SingleCard term = {item}/>
+          } />
+      </View>
+      {/* <TouchableOpacity onPress={()=>flipCard()}>
         <View style = {styles.box}>
           <Text style = {{color: "#FFF" ,textAlign: 'center', fontFamily: 'Gill Sans', top: 100, fontSize: 14, fontWeight: 'bold'}}>
               {cardFront}
           </Text>
         </View>
-      </TouchableOpacity> 
-      <View style = {{flexDirection: 'row'}}>  
+      </TouchableOpacity>  */}
+      {/* <View style = {{flexDirection: 'row'}}>  
         <TouchableOpacity onPress={()=>previousCard()} style = {styles.circleButton}>
           <Image source ={require('../assets/left_arrow.png')} style = {{height: 40, width: 40, top:10, right:2}}/>
         </TouchableOpacity>
         <TouchableOpacity onPress={()=>nextCard()} style = {styles.circleButton}>
         <Image source ={require('../assets/right_arrow.png')} style = {{height: 40, width: 40, top:10, left: 2}}/>
         </TouchableOpacity>
-      </View>
+      </View> */}
     </LinearGradient>
     )
 }
