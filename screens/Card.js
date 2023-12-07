@@ -5,57 +5,54 @@ import React, {useState} from 'react';
 
 const Card = () =>{
   const dataSource = [
-    {key: '001', word: "where i'm at", definition: 'ur moms house'},
     {key: '002', word: 'benevolent', definition: 'kind, generous'},
     {key: '003', word: 'clout', definition: 'special advantage or power'},
-    {key: '004', word: 'tu madre', definition: 'ur mom'},
     {key: '005', word: 'exacerbate', definition: 'to make worse or increase the severity of'},
     {key: '006', word: 'flourish', definition: 'to prosper, grow'},
     {key: '007', word: 'geriatric', definition: 'referring to old age'},
     {key: '008', word: 'hostile', definition: 'harmful, dangerous'},
     {key: '009', word: 'infer', definition: 'to guess, conclude, derive by reasoning'},
     {key: '0010',word: 'lament', definition: 'to feel sorry for, to mourn'},
-    {key: '0011',word: 'ur mother', definition: 'thy mother is courted by me'},
   ]; 
 
-  var[whichCardAmIOnIdk, setWhichCardAmIOnIdk] = useState(0);
+  var[index, setIndex] = useState(0);
   var[cardFront, setCardFront] = useState(dataSource[0].word);
   var[isDef, setIsDef] = useState(true);
 
-  function previousCard() {
-    if (whichCardAmIOnIdk>0){
-    setWhichCardAmIOnIdk(whichCardAmIOnIdk-1);
-    setCardFront(dataSource[whichCardAmIOnIdk].word);
-    }
-    else {
-      setWhichCardAmIOnIdk(dataSource.length-1);
-      setCardFront(dataSource[whichCardAmIOnIdk].word);
-    }
-    setIsDef(true);
-    console.log("prev " + whichCardAmIOnIdk);
-  }
+  // function previousCard() {
+  //   if (index>0){
+  //     setIndex(index-1);
+  //     setCardFront(dataSource[index].word);
+  //   }
+  //   else {
+  //     setIndex(dataSource.length-1);
+  //     setCardFront(dataSource[index].word);
+  //   }
+  //   setIsDef(true);
+  // }
 
   function nextCard() {
-    if(whichCardAmIOnIdk<dataSource.length-1){
-    setWhichCardAmIOnIdk(whichCardAmIOnIdk+1);
-    setCardFront(dataSource[whichCardAmIOnIdk].word);
+    var temp;
+    if(index<dataSource.length-1){
+      setIndex(index+1);
+      temp = dataSource[index].word;
+      setCardFront(temp);
     }
     else {
-      setWhichCardAmIOnIdk(0);
-      setCardFront(dataSource[whichCardAmIOnIdk].word);
+      setIndex(0);
+      temp = dataSource[index].word;
+      setCardFront(temp);
     }
     setIsDef(true);
-    console.log("next " +whichCardAmIOnIdk);
+    console.log(index);
   }
 
   function flipCard() {
     if(isDef)
-      setCardFront(dataSource[whichCardAmIOnIdk].definition);
+      setCardFront(dataSource[index].definition);
     else
-      setCardFront(dataSource[whichCardAmIOnIdk].word);
+      setCardFront(dataSource[index].word);
     setIsDef(!isDef);
-    
-
   }
 
   const navigation = useNavigation();
@@ -71,9 +68,9 @@ const Card = () =>{
         </View>
       </TouchableOpacity> 
       <View style = {{flexDirection: 'row'}}>  
-        <TouchableOpacity onPress={()=>previousCard()} style = {styles.circleButton}>
+        {/* <TouchableOpacity onPress={()=>previousCard()} style = {styles.circleButton}>
           <Image source ={require('../assets/left_arrow.png')} style = {{height: 40, width: 40, top:10, right:2}}/>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity onPress={()=>nextCard()} style = {styles.circleButton}>
         <Image source ={require('../assets/right_arrow.png')} style = {{height: 40, width: 40, top:10, left: 2}}/>
         </TouchableOpacity>
