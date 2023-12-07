@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View, Image, FlatList } from 'react-native';
+import { StyleSheet, Text, View, Image, FlatList, TouchableOpacity } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from '@react-navigation/native';
 import React, {useState} from 'react';
 import SingleCard from './SingleCard';
 
 // for flatlist: create separate card.js for rendering a single card, then pass each word/def through card component
-const Card = () =>{
+const Card = (navigation) =>{
   const dataSource = [
     {key: '002', word: '0', definition: 'A'},
     {key: '003', word: '1', definition: 'B'},
@@ -16,6 +16,7 @@ const Card = () =>{
     {key: '009', word: '6', definition: 'G'},
     {key: '0010', word: '7', definition: 'H'},
   ]; 
+  navigation = useNavigation();
 
   // var[index, setIndex] = useState(0);
   // var[cardFront, setCardFront] = useState(dataSource[0].word);
@@ -56,7 +57,7 @@ const Card = () =>{
   return(
     <LinearGradient style = {styles.container} colors= {["#08204f", "#92e8f1"]}>
       <Image source = {require('../assets/swiftDeck.png')} style = {styles.head_logo}></Image>
-      <View style = {{flexDirection: "column", position: 'absolute', width: 390, height: 530, top: 230}}>
+      <View style = {{flexDirection: "column", position: 'absolute', width: 390, height: 530, top: 230, alignItems:'center'}}>
         <FlatList
           data={dataSource}
           renderItem={({item}) =>      
@@ -78,6 +79,12 @@ const Card = () =>{
         <Image source ={require('../assets/right_arrow.png')} style = {{height: 40, width: 40, top:10, left: 2}}/>
         </TouchableOpacity>
       </View> */}
+      <TouchableOpacity onPress = {() => {navigation.navigate("Home")}}>
+                <View style = {styles.backB}>
+                  <Text style = {{color: "#FFF" ,textAlign: 'center', fontFamily: 'Gill Sans', top: 5, fontSize: 15, fontWeight: 'bold'}}>BACK</Text>
+                </View>
+      </TouchableOpacity>
+
     </LinearGradient>
     )
 }
@@ -155,7 +162,17 @@ const styles = StyleSheet.create({
     bottom:-30,
     right:-175,
     position: "absolute",
-  }
+  },
+
+  backB:{
+    borderRadius:10,
+    width:210,
+    height: 30,
+    backgroundColor: "#b8e3ff",
+    top: 370,
+    
+    
+  },
 
   });
 

@@ -27,8 +27,9 @@ const styles = StyleSheet.create({
       color: "#FFF" ,
       textAlign: 'center',
       fontFamily: 'Gill Sans',
-      top: 100, fontSize: 14,
-      fontWeight: 'bold'
+      fontSize: 14,
+      fontWeight: 'bold',
+      top: 75,
     },
     circleButton: {
       height: 60,
@@ -57,11 +58,15 @@ const styles = StyleSheet.create({
     },
     box:{
       borderRadius: 10,
-      width: 300,
-      height: 250,
+      borderWidth:1,
+      borderColor: "#FFF",
+      width: 370,
+      height: 190,
       backgroundColor: '#a2d8f7',
+      alignItems: 'center',
       top: 0,
-      right: 0,
+      marginBottom: 15,
+      
     },
     learnB:{
       borderRadius: 10,
