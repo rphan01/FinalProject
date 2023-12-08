@@ -13,6 +13,7 @@ import Profile from "./screens/Profile";
 import Create from "./screens/Create";
 import Creates from "./screens/Creates";
 import Add from "./screens/Add";
+import Title from "./screens/Title";
 
 const Stack = createNativeStackNavigator()
 
@@ -79,6 +80,13 @@ export default function App() {
         <Stack.Screen
           name = "Profile"
           component={Profile}
+          options = {{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name = "Title"
+          component={Title}
           options = {{
             headerShown: false
           }}

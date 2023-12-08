@@ -100,7 +100,7 @@ function Home ({route, navigation }) {
                    style = {{position: "absolute",left: 45, top: 10, height: 50, width: 50}} ></Image>
               </TouchableOpacity>
 
-              <TouchableOpacity onPress={() => navigation.navigate("Add")}>
+              <TouchableOpacity onPress={() => navigation.navigate("Title")}>
               <Image source = {require('../assets/createIcon.png')}
                    style = {{position: "absolute", left: 175, top: 10, height: 50, width: 50}} ></Image>
               </TouchableOpacity>
