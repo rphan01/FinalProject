@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 
 const Title = () =>{
     const navigation= useNavigation();
-
+    const [name,setName] = useState("");
 
   return (
   
@@ -16,9 +16,10 @@ const Title = () =>{
                   style = {styles.head_logo}></Image>
           
           <View style = {styles.box}>
-              <TextInput placeholder="Name of the Deck"style = {styles.title}></TextInput>
+              <TextInput onChangeText={(newText)=>{
+                          setDef(newText);}}  placeholder="Name of the Deck"style = {styles.title}></TextInput>
 
-              <TouchableOpacity onPress ={()=> {navigation.navigate("Add");}} >
+              <TouchableOpacity onPress ={()=> {navigation.navigate("Add", name);}} >
                 <View style= {styles.createB}>
                     <Text style = {{color: "#FFF",fontFamily: "Gill Sans",fontSize: 25, fontWeight:'bold', top: 10}}>Create</Text>
                 </View>
