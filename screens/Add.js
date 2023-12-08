@@ -29,12 +29,12 @@ function Add({ navigation }) {
       console.log(error)
     }
   }
-  const getTitle = async ()=> {
-    try{
-      const title = await AsyncStorage.getItem('title');
-      setName(title);
-    }catch(error){}
-  }
+  // const getTitle = async ()=> {
+  //   try{
+  //     const title = await AsyncStorage.getItem('title');
+  //     setName(title);
+  //   }catch(error){}
+  // }
 
   
 
