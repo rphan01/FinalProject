@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { TextInput, StyleSheet, Text, View, Image, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
+import { TextInput, StyleSheet, Text, View, Image, TouchableOpacity, KeyboardAvoidingView, Platform, FlatList } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
-import { firebase } from "../FirebaseConfig";
+import { db } from '../FirebaseConfig';
+import { collection, getDocs } from 'firebase/firestore/lite';
 
-function Add({ navigation }) {
-  
-  const toDo = firebase.firestore().collection('users');
-  const[word, setWord] = useState();
-  const[definition, setDef] = useState();
-  const[name, setName] = useState();
+const Add = (navigation) => {
 
-const[listData, setListData] = useState([]);
+  const getData = async() => {
+    const list = collection(db, 'users');
+    const test = await getDocs(list);
+    const nameList = test.docs.map(doc => doc.data());
+    console.log(nameList);
+  }
+
 
   return (
   
@@ -20,13 +22,7 @@ const[listData, setListData] = useState([]);
                   style = {styles.head_logo}></Image>
           
           <View style = {styles.box}>
-              <KeyboardAvoidingView enabled = {true} keyboardVerticalOffset={10}>
-
-              <TextInput multiline= {true} style = {styles.title}
-                          value={name}
-                          placeholder='Title of the Deck'
-                          onChangeText={(newText)=>{
-                          setName(newText);}}/>
+              {/* <KeyboardAvoidingView enabled = {true} keyboardVerticalOffset={10}>
                            
               <TextInput multiline= {true} style = {styles.term}
                           value={word}
@@ -39,22 +35,24 @@ const[listData, setListData] = useState([]);
                           placeholder='Enter Definition'
                           onChangeText={(newText)=>{
                           setDef(newText);}}/>
-             </KeyboardAvoidingView>
+             </KeyboardAvoidingView> */}
 
-              <TouchableOpacity onPress ={()=>{navigation.navigate("Creates", listData);}}>
+              <TouchableOpacity onPress ={()=>{getData();}}>
                   <View style = {styles.createB}>
                       <Text style = {{color: "#FFF" ,textAlign: 'center', fontFamily: 'Gill Sans', top: 10, fontSize: 30, fontWeight: 'bold'}}>
                           Create
                       </Text>
                   </View>
               </TouchableOpacity>
-              <TouchableOpacity onPress = {() => {navigation.navigate("Home")}}>
+              <TouchableOpacity onPress = {() => {}}>
                 <View style = {styles.backB}>
                   <Text style = {{color: "#FFF" ,textAlign: 'center', fontFamily: 'Gill Sans', top: 5, fontSize: 15, fontWeight: 'bold'}}>BACK</Text>
                 </View>
               </TouchableOpacity>
               
           </View>
+      
+
       
       </LinearGradient>
 
