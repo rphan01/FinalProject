@@ -24,6 +24,9 @@ const Register = () =>{
         alert("make the password longer loser");
       } finally {
         setLoading(false);
+        firestore().collection("users").add({
+          email:email
+        })
       }
     }
 

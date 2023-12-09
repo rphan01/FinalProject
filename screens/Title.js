@@ -3,10 +3,11 @@ import { Button, TextInput, StyleSheet, Text, View, Image, TouchableOpacity, Key
 import { LinearGradient } from "expo-linear-gradient";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import firestore from '@react-native-firebase/firestore';
+
 const Title = () =>{
     const navigation= useNavigation();
-
+    const[name, setName] = useState('');
+    console.log(name)
    
   
   return (

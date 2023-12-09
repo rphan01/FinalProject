@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Button, TextInput, StyleSheet, Text, View, Image, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
+import { TextInput, StyleSheet, Text, View, Image, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
-import firestore from '@react-native-firebase/firestore'
 function Add({ navigation }) {
 
  
-  const addDeck = () =>{
-    firestore().doc("title").add({
-      cards: [word, definition]
-    })
-  }
   
 
   const[word, setWord] = useState();
@@ -47,14 +41,14 @@ const[listData, setListData] = useState([]);
                           setDef(newText);}}/>
              </KeyboardAvoidingView>
 
-              <TouchableOpacity onPress ={()=>{listData.push({title: name, term: word, def: definition});navigation.navigate("Creates", listData);}}>
+              <TouchableOpacity onPress ={()=>{navigation.navigate("Creates", listData);}}>
                   <View style = {styles.createB}>
                       <Text style = {{color: "#FFF" ,textAlign: 'center', fontFamily: 'Gill Sans', top: 10, fontSize: 30, fontWeight: 'bold'}}>
                           Create
                       </Text>
                   </View>
               </TouchableOpacity>
-              <TouchableOpacity onPress = {() => {saveTitle(); navigation.navigate("Home", listData)}}>
+              <TouchableOpacity onPress = {() => {navigation.navigate("Home")}}>
                 <View style = {styles.backB}>
                   <Text style = {{color: "#FFF" ,textAlign: 'center', fontFamily: 'Gill Sans', top: 5, fontSize: 15, fontWeight: 'bold'}}>BACK</Text>
                 </View>
