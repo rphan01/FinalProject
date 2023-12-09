@@ -15,12 +15,12 @@
 // };
 
 // // Initialize Firebase
-// export const fb_app = initializeApp(firebaseConfig);
-// export const fb_auth = getAuth(fb_app);
 
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -37,3 +37,5 @@ if(!firebase.apps.length){
 }
 
 export {firebase};
+export const fb_app = initializeApp(firebaseConfig);
+export const fb_auth = getAuth(fb_app);
