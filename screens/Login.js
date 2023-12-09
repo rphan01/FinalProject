@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, {useState, } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { fb_auth } from '../FirebaseConfig.ts';
+import firestore from '@react-native-firebase/firestore';
 
 
 const Login = () =>{
@@ -28,19 +29,19 @@ const Login = () =>{
       }
     }
 
-    const signUp = async() => {
-      setLoading(true);
-      try {
-        const response = await createUserWithEmailAndPassword(auth, email, password);
-        console.log(response);
-        alert("Thank you for joining SwiftDeck");
-      } catch (error) {
-        console.log(error);
-        alert("Try Again");
-      } finally {
-        setLoading(false);
-      }
-    }
+    // const signUp = async() => {
+    //   setLoading(true);
+    //   try {
+    //     const response = await createUserWithEmailAndPassword(auth, email, password);
+    //     console.log(response);
+    //     alert("Thank you for joining SwiftDeck");
+    //   } catch (error) {
+    //     console.log(error);
+    //     alert("Try Again");
+    //   } finally {
+    //     setLoading(false);
+    //   }
+    // }
 
     return(
         <LinearGradient style = {styles.container}
