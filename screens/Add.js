@@ -3,7 +3,7 @@ import { TextInput, StyleSheet, Text, View, Image, TouchableOpacity, KeyboardAvo
 import { LinearGradient } from "expo-linear-gradient";
 function Add({ navigation }) {
 
- 
+ //work
   
 
   const[word, setWord] = useState();
