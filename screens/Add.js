@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { TextInput, StyleSheet, Text, View, Image, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
+import { firebase } from "../FirebaseConfig";
+
 function Add({ navigation }) {
-
- //work
   
-
+  const toDo = firebase.firestore().collection('users');
   const[word, setWord] = useState();
   const[definition, setDef] = useState();
   const[name, setName] = useState();
