@@ -4,6 +4,7 @@ import { useNavigation, useEffect } from '@react-navigation/native';
 import React, {useState} from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { fb_auth } from '../FirebaseConfig.ts';
+import firestore from "@react-native-firebase/firestore";
 
 
 const Register = () =>{
@@ -24,6 +25,9 @@ const Register = () =>{
         alert("make the password longer loser");
       } finally {
         setLoading(false);
+        firestore().collection("users").add({
+          email:email
+        })
       }
     }
 

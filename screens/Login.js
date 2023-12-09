@@ -4,8 +4,6 @@ import { useNavigation } from '@react-navigation/native';
 import React, {useState, } from 'react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { fb_auth } from '../FirebaseConfig.ts';
-import firestore from '@react-native-firebase/firestore';
-
 
 const Login = () =>{
     const[email, setEmail] = useState('');
