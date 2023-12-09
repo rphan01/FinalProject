@@ -1,41 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Button, TextInput, StyleSheet, Text, View, Image, TouchableOpacity, KeyboardAvoidingView, Platform } from 'react-native';
 import { LinearGradient } from "expo-linear-gradient";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import firestore from '@react-native-firebase/firestore'
 function Add({ navigation }) {
 
-  // // const handleAdd = () => {
-  // //   setListData([...listData, {word, definition}])
-  // //   setWord(null)
-  // //   setDef(null)
-  // // }
-  const getData = async () =>{
-    const values = await AsyncStorage.multiGet("@name")
-    values.forEach(value =>{
-      if(value[0] === '@name'){
-        setName(JSON.parse(value[1]));
-      }else if(value[1] ==='@word'){
-
-      }
+ 
+  const addDeck = () =>{
+    firestore().doc("title").add({
+      cards: [word, definition]
     })
   }
-  
-  useEffect(getData);
-  const saveTitle = async () =>{
-    try{
-      AsyncStorage.setItem('title', text);
-    }catch(error){
-      console.log(error)
-    }
-  }
-  // const getTitle = async ()=> {
-  //   try{
-  //     const title = await AsyncStorage.getItem('title');
-  //     setName(title);
-  //   }catch(error){}
-  // }
-
   
 
   const[word, setWord] = useState();

@@ -3,11 +3,12 @@ import { Button, TextInput, StyleSheet, Text, View, Image, TouchableOpacity, Key
 import { LinearGradient } from "expo-linear-gradient";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-
+import firestore from '@react-native-firebase/firestore';
 const Title = () =>{
     const navigation= useNavigation();
-    const [name,setName] = useState("");
 
+   
+  
   return (
   
       <LinearGradient style = {styles.container}
@@ -17,7 +18,7 @@ const Title = () =>{
           
           <View style = {styles.box}>
               <TextInput onChangeText={(newText)=>{
-                          setDef(newText);}}  placeholder="Name of the Deck"style = {styles.title}></TextInput>
+                          setName(newText);}}  placeholder="Name of the Deck"style = {styles.title}></TextInput>
 
               <TouchableOpacity onPress ={()=> {navigation.navigate("Add", name);}} >
                 <View style= {styles.createB}>
